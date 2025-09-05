@@ -13,3 +13,7 @@ Copied!
 (new-object System.Net.WebClient).DownloadFile($URL, $OUTPUT_FILE)
 Copied!
 cmd.exe /c $OUTPUT_FILE /S
+
+
+
+cmd.exe /c "C:\Program Files\GIMP 2\uninst\unins000.exe" /VERYSILENT /NORESTART
