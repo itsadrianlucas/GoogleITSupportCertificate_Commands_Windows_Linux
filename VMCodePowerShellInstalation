@@ -1,0 +1,15 @@
+$VLC_URL = "https://get.videolan.org/vlc/last/win64/"
+Copied!
+$GET_HTML = Invoke-WebRequest $VLC_URL
+Copied!
+$FILE = $GET_HTML.Links | Select-Object @{Label='href';Expression={@{$true=$_.href}[$_.href.EndsWith('win64.exe')]}} | Select-Object -ExpandProperty href
+Copied!
+$URL = ($VLC_URL+$FILE)
+Copied!
+$DOWNLOAD_DIR = "C:\users\qwiklabs\Downloads\"
+Copied!
+$OUTPUT_FILE = ($DOWNLOAD_DIR+$FILE)
+Copied!
+(new-object System.Net.WebClient).DownloadFile($URL, $OUTPUT_FILE)
+Copied!
+cmd.exe /c $OUTPUT_FILE /S
