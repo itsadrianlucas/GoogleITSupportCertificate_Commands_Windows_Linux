@@ -1,8 +1,8 @@
-**BASIC NAVIGATING COMMANDS**
+BASIC NAVIGATING COMMANDS
 
 WINDOWS
-Get-Location/pwd (shows the current directory, valid in both PowerShell and Linux)
-Get-History/history (shows the current directory, valid in both PowerShell and Linux)
+pwd/Get-Location (shows the current directory, valid in both PowerShell and Linux)
+history/Get-History (shows the current directory, valid in both PowerShell and Linux)
 ls/dir/GetChild-Item (list items in the directory)
 cd (change Directory/Access a directory)
 mkdir (create directories)
@@ -13,17 +13,15 @@ echo (Creates or displays content of a file)
 Start (used to start programs or open files)
 cat/Get-Content (displays the contents of files)
 more/Out-Host (views files page by page)
-Get-Alias (In PowerShell, used to list command aliases)
-Get-ChildItem (equivalent to ls in PowerShell)
-Write-Output/echo (display text or output values)
-findstr (finds text in files)
+Get-Alias (used to list command aliases)
+echo/Write-Output (display text or output values)
+findstr (finds text in files "for example ctrl + f")
 
 > (output redirection)
 >> (appends content to a file)
 2> (redirects errors to a file)
 < (input redirection, valid in both Linux and PowerShell)
 | (chains commands together, common in both)
-
 
 LINUX:
 pwd (shows the current directory)
@@ -39,9 +37,9 @@ cat (displays the contents of files)
 more (views files page by page)
 grep (finds text in files)
 
-****USERS AND PERMISSIONS****
+USERS AND PERMISSIONS
 
-WINDOWS 
+WINDOWS
 Get-LocalUser (checks the Computer Users/Privileges)
 Get-LocalGroup (checks the Computer Groups)
 Get-LocalGroupMember "Administrators" (checks the Group's members)
@@ -52,8 +50,8 @@ net user Adrian password /add /logonpasswordchg:yes (mixing the 2 commands above
 net user Adrian /del (delete a user from the computer)
 Removal-LocalUser Adrian (delete a user from the computer same as "net")
 icacls C:\Users\adria\Desktop\ (Shows the permission the user have on folder/file)
-icacls 'C:\Vacation_Pictures\' /grant 'Everyone: (OI)(CI)(R)'  (add permission to a group of users)
-icacls 'C:\Vacation_Pictures\' /remove Everyone: (remove permissions to a group of users in this case "everyone group")
+icacls 'C:\Vacation_Pictures' /grant 'Everyone: (OI)(CI)(R)'  (add permission to a group of users)
+icacls 'C:\Vacation_Pictures' /remove Everyone: (remove permissions to a group of users in this case "everyone group")
 
 LINUX
 cat /etc/group (checks the Computer Groups and members)
@@ -69,12 +67,12 @@ chmod 754 /my_cool_file (add permissions using numericals ex = "1+2+4= 7"User / 
 sudo chown adrian my_cool_file (Changes the owner of a file, in this case the user "adrian")
 sudo chgrp best_group_ever my_cool_file (Changes the group of a file)
 
-****PACKAGES AND SOFTWARE MANAGEMENT****
+PACKAGES AND SOFTWARE MANAGEMENT
+
 WINDOWS
 Compress-Archive -path C:\Users\Adria\Coolfile ~\Adria\Coolfile.zip (Compress a file using first the path source and then destiny)
 Install-Package -Name awesomesoftware -Source chocolatey (installing a package using PowerShell and specifying Chocolatey as the source.)
 Get-Package -Name TestPackage (Check if the package exists in the computer)
-
 
 LINUX
 sudo dpkg -i atom-amd64.deb (Install a Debian package "flag I" app Atom)
@@ -88,9 +86,9 @@ sudo apt upgrade (Install the packages updated in the machine)
 uname -r (Checks the version of the Kernel is being used in Linux)
 sudo apt full-upgrade (Updates the Kernel of the OS)
 
-****FILESYSTEM MANAGEMENT****
-WINDOWS
+FILESYSTEM MANAGEMENT
 
+WINDOWS
 Diskpart (Tool to manager disks in CLI)
 list disk (Lists the disks connected to the computer)
 select disk (Selects the disk)
@@ -99,3 +97,10 @@ create partition primary (Creates a partition in the disk)
 select partition (selects the partition created)
 active (Activates the current partition)
 format FS=NTFS label=my-test-drive quick (This command is formatting the drive with NTFS format on quick mode)
+
+LINUX
+sudo parted -l (lists the disks connected to the computer)
+sudo parted /dev/sdb (selects the disk in this case "/dev/sdb")
+mklabel gpt (renames/Set a label to the disk/partition table)
+mkpart primary ext4 1mib 5gib (creates a partition in the device setting the partition type, the filesystem and size)
+sudo mkfs -t ext4 /dev/sdb1 (formatting the partition using the "-t" filesystem settled)
